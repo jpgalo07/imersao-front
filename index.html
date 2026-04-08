@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Quem está assistindo?</h1>
+        <p>Escolha um perfil para continuar</p>
+    </header>
+
+    <main>
+        <section class="profiles-container" aria-label="Perfis de usuário">
+            <ul class="profiles-wrapper" aria-label="Lista não ordenada de perfis">
+                <li>
+                    <ol class="profiles" aria-label="Perfis ordenados">
+                        <li class="profile">
+                            <a href="catalogo/catalogo.html" aria-label="Selecionar Elias">
+                                <figure>
+                                    <img src="/assets/perfil-1.jpg" alt="Avatar do Elias">
+                                    <figcaption>Elias</figcaption>
+                                </figure>
+                            </a>
+                            <p class="profile-name">Elias</p>
+                        </li>
+                        <li class="profile">
+                            <a href="catalogo/catalogo.html" aria-label="Selecionar JP">
+                                <figure>
+                                    <img src="/assets/perfil-2.jpg" alt="Avatar da JP">
+                                    <figcaption>JP</figcaption>
+                                </figure>
+                            </a>
+                            <p class="profile-name">JP</p>
+                        </li>
+                        <li class="profile">
+                            <a href="catalogo/catalogo.html" aria-label="Selecionar Fernanda">
+                                <figure>
+                                    <img src="/assets/perfil-3.jpg" alt="Avatar da Fernanda">
+                                    <figcaption>Fernanda</figcaption>
+                                </figure>
+                            </a>
+                            <p class="profile-name">Fernanda</p>
+                        </li>
+                        <li class="profile">
+                            <a href="catalogo/catalogo.html" aria-label="Selecionar Mr. Rosa">
+                                <figure>
+                                    <img src="/assets/perfil-4.jpg" alt="Avatar do Mr. Rosa">
+                                    <figcaption>Mr. Rosa</figcaption>
+                                </figure>
+                            </a>
+                            <p class="profile-name">Mr. Rosa</p>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileLinks = document.querySelectorAll('.profiles .profile a');
+
+            profileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const profile = link.closest('.profile');
+                    if (!profile) return;
+
+                    const nameEl = profile.querySelector('figcaption');
+                    const imgEl = profile.querySelector('img');
+
+                    const nome = nameEl ? nameEl.textContent.trim() : '';
+                    let imagem = imgEl ? imgEl.getAttribute('src') : '';
+
+                    // Armazena caminho relativo: evita /preciso e funciona em GitHub Pages.
+                    if (imagem && imagem.startsWith('/')) {
+                        imagem = imagem.slice(1);
+                    }
+
+                    try {
+                        localStorage.setItem('perfilAtivoNome', nome);
+                        localStorage.setItem('perfilAtivoImagem', imagem);
+                    } catch (err) {
+                        console.warn('Erro ao gravar perfilAtivo no localStorage', err);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

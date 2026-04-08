@@ -1,0 +1,332 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    /* Remove margin padrão do browser */
+    padding: 0;
+    /* Remove padding padrão do browser */
+    box-sizing: border-box;
+    /* Inclui padding e border na largura total */
+}
+
+:root {
+    /* Variáveis de cores e transição reutilizáveis */
+    --netflix-black: #141414;
+    --netflix-red: #e50914;
+    --netflix-dark-gray: #221f1f;
+    --netflix-light-gray: #f5f5f1;
+    --text-primary: #ffffff;
+    --transition: all 0.3s ease-in-out;
+    /* Transição suave compartilhada */
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Rolagem suave para navegação interna */
+}
+
+body {
+    background-color: var(--netflix-black);
+    /* Fundo escuro estilo Netflix */
+    color: var(--text-primary);
+    /* Texto branco */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Fonte moderna */
+    line-height: 1.6;
+    /* Espaço de linha legível */
+    min-height: 100vh;
+    /* Corpo ocupa altura total da janela */
+    display: flex;
+    /* Usa flex para centralizar conteúdo */
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background-color: var(--netflix-black);
+    /* Mantém a mesma cor do corpo */
+    padding: 4rem 2rem 2rem;
+    /* Espaçamento superior maior */
+    text-align: center;
+    /* Centralizar texto */
+}
+
+header h1 {
+    font-size: 2rem;
+    /* Tamanho do título */
+    font-weight: 500;
+    /* Peso médio */
+    letter-spacing: 0;
+    /* Espaçamento entre letras normal */
+    text-transform: none;
+    /* Preserve caixa normal */
+    margin-bottom: 0.5rem;
+    /* Espaço abaixo do título */
+    color: var(--text-primary);
+    /* Branco */
+}
+
+header p {
+    font-size: 0.9rem;
+    /* Texto menor para subtítulo */
+    color: rgba(255, 255, 255, 0.6);
+    /* Texto secundário mais fraco */
+    font-weight: 300;
+    /* Texto leve */
+}
+
+/* Main */
+main {
+    flex: 1;
+    /* Cobre todo espaço restante */
+    display: flex;
+    /* Layout flexível */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    padding: 3rem 2rem;
+    /* Espaçamento interno */
+}
+
+/* Profiles Section */
+.profiles-wrapper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profiles {
+    list-style: none; /* Remove marcadores de lista */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* Layout horizontal */
+    justify-content: center;
+    gap: 1.5rem;
+    /* Espaçamento entre cards */
+    overflow-x: auto;
+    /* Permite scroll horizontal em telas pequenas */
+    max-width: 100%;
+    width: 100%;
+    -ms-overflow-style: none; /* IE e Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.profiles::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
+}
+
+/* Profile Card */
+.profile {
+    perspective: 1000px;
+    /* Profundidade para possíveis efeitos 3D */
+    text-align: center;
+    /* Centraliza conteúdo interno */
+    min-width: 150px;
+    max-width: 220px;
+    width: 100%;
+}
+
+.profile a {
+    text-decoration: none;
+    /* Remove sublinhado */
+    display: block;
+    /* Permite que o link ocupe o card todo */
+    transition: var(--transition);
+    /* Anima as mudanças */
+    cursor: pointer;
+    /* Muda o cursor para indicar clicável */
+}
+
+.profile a:focus,
+.profile a:focus-visible {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.profile a:hover {
+    transform: scale(1.04);
+    /* Leve aumento no hover */
+}
+
+.profile figure {
+    margin: 0 0 1rem 0;
+    /* Espaço inferior para o nome */
+    position: relative;
+    /* Base para posicionamento absoluto se necessário */
+    overflow: hidden;
+    /* Esconde partes da imagem que saem do contêiner */
+    border-radius: 4px;
+    /* Bordas arredondadas estilo Netflix */
+    aspect-ratio: 1;
+    /* Formato quadrado */
+}
+
+.profile img {
+    width: 100%;
+    /* Ocupa toda largura do container */
+    height: 100%;
+    /* Ocupa toda altura do container */
+    object-fit: cover;
+    /* Corta a imagem mantendo proporção */
+    display: block;
+    /* Remove pequeno gap abaixo da imagem */
+    transition: var(--transition);
+    /* Suaviza hover */
+    filter: brightness(1);
+    /* Brilho padrão */
+}
+
+.profile a:hover img {
+    filter: brightness(1.15);
+    /* Brilho extra no hover */
+}
+
+/* Figcaption */
+.profile figcaption {
+    background: none;
+    /* Sem fundo extra */
+    padding: 0;
+    /* Sem padding */
+    position: relative;
+    /* Sem posicionamento crítico */
+    bottom: auto;
+    left: auto;
+    right: auto;
+    font-size: 0.9rem;
+    /* Texto pequeno para legenda */
+    font-weight: 500;
+    /* Texto com peso médio */
+    color: rgba(255, 255, 255, 0.8);
+    /* Branco com opacidade */
+    text-align: center;
+    /* Centraliza texto */
+    transition: var(--transition);
+    /* Suaviza mudança quando houver */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+        /* Título menor em telas médias */
+    }
+
+    .profiles {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        /* Gap menor para caber melhor */
+    }
+
+    .profile {
+        min-width: 120px;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 2rem 1rem;
+        /* Menos padding no mobile */
+    }
+
+    header {
+        padding: 2rem 1rem 1.25rem;
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+        /* Título menor em telas pequenas */
+    }
+
+    header p {
+        font-size: 0.85rem;
+    }
+
+    .profiles {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 1rem;
+        /* Gap ainda menor */
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 14px;
+        /* Texto menor para caber */
+    }
+
+    main {
+        padding: 1.5rem 0.75rem;
+    }
+
+    header {
+        padding: 1.5rem 0.75rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.15rem;
+    }
+
+    header p {
+        font-size: 0.8rem;
+    }
+
+    .profiles {
+        grid-template-columns: 1fr;
+        /* Uma coluna em celulares muito pequenos */
+        gap: 0.75rem;
+        max-width: 100%;
+    }
+
+    .profile figure {
+        aspect-ratio: 1;
+    }
+}
+
+/* Focus State for Accessibility */
+.profile a:focus {
+    outline: 2px solid var(--netflix-red);
+    /* Contorno de foco visível em vermelho */
+    outline-offset: 2px;
+    /* Espaço entre contorno e elemento */
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        /* Inicia transparente */
+        transform: translateY(10px);
+        /* Inicia deslocado para baixo */
+    }
+
+    to {
+        opacity: 1;
+        /* Termina totalmente visível */
+        transform: translateY(0);
+        /* Volta à posição normal */
+    }
+}
+
+.profile {
+    animation: fadeInUp 0.5s ease-out;
+    /* Apresenta os cards com animação suave */
+}
+
+.profile:nth-child(2) {
+    animation-delay: 0.05s;
+    /* Pequeno atraso para segundo card */
+}
+
+.profile:nth-child(3) {
+    animation-delay: 0.1s;
+    /* Pequeno atraso para terceiro card */
+}
+
+.profile:nth-child(4) {
+    animation-delay: 0.15s;
+    /* Pequeno atraso para quarto card (scaling)*/
+}
